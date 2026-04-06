@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QRok — Result</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RPC8TESB10"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RPC8TESB10');
+</script>
+</head>
+<body class="page-result">
+
+  <div class="grid-overlay"></div>
+  <div class="scanline"></div>
+
+  <header class="site-header">
+    <div class="logo">
+      <a href="index.html" style="text-decoration:none;display:flex;align-items:center;gap:8px;">
+        <span class="logo-icon">⬡</span>
+        <span class="logo-text">QR<span class="accent">ok</span></span>
+      </a>
+    </div>
+    <nav class="site-nav">
+      <a href="scan.html" class="nav-link">Scan</a>
+      <a href="history.html" class="nav-link">History</a>
+    </nav>
+  </header>
+
+  <main class="result-main">
+    <div class="result-container" id="resultContainer">
+
+      <!-- Loading state -->
+      <div class="result-loading" id="resultLoading">
+        <div class="loader-ring"></div>
+        <p>Analyzing QR content…</p>
+      </div>
+
+      <!-- Error state -->
+      <div class="result-error" id="resultError" style="display:none;">
+        <div class="error-icon">⚠</div>
+        <h2>No Result Found</h2>
+        <p id="errorMessage">No scan data was provided.</p>
+        <a href="scan.html" class="btn btn-primary" style="margin-top:1.5rem;">
+          <span class="btn-icon">◎</span> Scan Again
+        </a>
+      </div>
+
+      <!-- Result content -->
+      <div class="result-content" id="resultContent" style="display:none;">
+
+        <!-- Risk banner -->
+        <div class="risk-banner" id="riskBanner">
+          <div class="risk-banner-left">
+            <div class="risk-icon" id="riskIcon"></div>
+            <div class="risk-info">
+              <div class="risk-label" id="riskLabel"></div>
+              <div class="risk-level" id="riskLevel"></div>
+            </div>
+          </div>
+          <div class="risk-score-block">
+            <div class="risk-score-value" id="riskScore"></div>
+            <div class="risk-score-label">risk score</div>
+          </div>
+        </div>
+
+        <!-- Content type badge -->
+        <div class="content-type-row">
+          <div class="content-type-badge" id="contentTypeBadge"></div>
+          <div class="scan-meta" id="scanMeta"></div>
+        </div>
+
+        <!-- Findings -->
+        <section class="result-section" id="findingsSection">
+          <h2 class="section-label">
+            <span class="section-icon">◈</span> Security Findings
+          </h2>
+          <div class="findings-list" id="findingsList"></div>
+        </section>
+
+        <!-- Parsed data -->
+        <section class="result-section" id="parsedSection">
+          <h2 class="section-label">
+            <span class="section-icon">◻</span> Parsed Content
+          </h2>
+          <div class="parsed-grid" id="parsedGrid"></div>
+        </section>
+
+        <!-- Raw content -->
+        <section class="result-section">
+          <h2 class="section-label">
+            <span class="section-icon">⊞</span> Raw QR Content
+          </h2>
+          <div class="raw-content-block">
+            <code class="raw-content" id="rawContent"></code>
+            <button class="copy-btn" id="copyRaw" title="Copy to clipboard">⧉ Copy</button>
+          </div>
+        </section>
+
+        <!-- Actions -->
+        <div class="result-actions">
+          <a href="scan.html" class="btn btn-ghost">
+            <span class="btn-icon">◁</span> Scan Another
+          </a>
+          <button class="btn btn-ghost" id="saveResult">
+            <span class="btn-icon">◷</span> Save to History
+          </button>
+          <button class="btn btn-danger" id="openLink" style="display:none;">
+            <span class="btn-icon">⤤</span> Open Link
+          </button>
+        </div>
+
+        <!-- Confirm modal -->
+        <div class="modal-overlay" id="confirmModal" style="display:none;">
+          <div class="modal-box">
+            <div class="modal-header">
+              <span class="modal-icon">⚠</span>
+              <h3>Proceed with Caution</h3>
+            </div>
+            <p class="modal-body" id="modalBody"></p>
+            <div class="modal-footer">
+              <button class="btn btn-ghost" id="modalCancel">Cancel</button>
+              <button class="btn btn-danger" id="modalConfirm">Open Anyway</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="assets/js/utils.js" type="module"></script>
+  <script src="assets/js/parser.js" type="module"></script>
+  <script src="assets/js/risk-engine.js" type="module"></script>
+  <script src="assets/js/history.js" type="module"></script>
+  <script src="assets/js/result.js" type="module"></script>
+</body>
+</html>

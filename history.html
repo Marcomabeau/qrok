@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QRok — History</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RPC8TESB10"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RPC8TESB10');
+</script>
+</head>
+<body class="page-history">
+
+  <div class="grid-overlay"></div>
+  <div class="scanline"></div>
+
+  <header class="site-header">
+    <div class="logo">
+      <a href="index.html" style="text-decoration:none;display:flex;align-items:center;gap:8px;">
+        <span class="logo-icon">⬡</span>
+        <span class="logo-text">QR<span class="accent">ok</span></span>
+      </a>
+    </div>
+    <nav class="site-nav">
+      <a href="scan.html" class="nav-link">Scan</a>
+      <a href="history.html" class="nav-link active">History</a>
+    </nav>
+  </header>
+
+  <main class="history-main">
+    <div class="history-container">
+
+      <div class="page-header">
+        <div class="page-header-left">
+          <h1 class="page-title">Scan History</h1>
+          <p class="page-sub">Stored locally in your browser. Never shared.</p>
+        </div>
+        <div class="history-actions" id="historyActions" style="display:none;">
+          <button class="btn btn-ghost btn-sm" id="exportHistory">
+            <span class="btn-icon">⤓</span> Export
+          </button>
+          <button class="btn btn-danger btn-sm" id="clearHistory">
+            <span class="btn-icon">✕</span> Clear All
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="history-stats" id="historyStats" style="display:none;">
+        <div class="stat-chip">
+          <span class="stat-value" id="statTotal">0</span>
+          <span class="stat-label">Total Scans</span>
+        </div>
+        <div class="stat-chip risk-safe">
+          <span class="stat-value" id="statSafe">0</span>
+          <span class="stat-label">Safe</span>
+        </div>
+        <div class="stat-chip risk-medium">
+          <span class="stat-value" id="statMedium">0</span>
+          <span class="stat-label">Medium</span>
+        </div>
+        <div class="stat-chip risk-high">
+          <span class="stat-value" id="statHigh">0</span>
+          <span class="stat-label">High/Dangerous</span>
+        </div>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="history-filter" id="historyFilter" style="display:none;">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="safe">Safe</button>
+        <button class="filter-btn" data-filter="low">Low</button>
+        <button class="filter-btn" data-filter="medium">Medium</button>
+        <button class="filter-btn" data-filter="high">High</button>
+        <button class="filter-btn" data-filter="dangerous">Dangerous</button>
+      </div>
+
+      <!-- History list -->
+      <div class="history-list" id="historyList"></div>
+
+      <!-- Empty state -->
+      <div class="history-empty" id="historyEmpty" style="display:none;">
+        <div class="empty-icon">◷</div>
+        <h2>No scans yet</h2>
+        <p>Your scan history will appear here after you analyze QR codes.</p>
+        <a href="scan.html" class="btn btn-primary" style="margin-top:1.5rem;">
+          <span class="btn-icon">◎</span> Start Scanning
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Delete confirm modal -->
+  <div class="modal-overlay" id="deleteModal" style="display:none;">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span class="modal-icon">⚠</span>
+        <h3>Clear All History</h3>
+      </div>
+      <p class="modal-body">This will permanently delete all scan records from your device. This action cannot be undone.</p>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="modalCancel">Cancel</button>
+        <button class="btn btn-danger" id="modalConfirm">Delete All</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/utils.js" type="module"></script>
+  <script src="assets/js/parser.js" type="module"></script>
+  <script src="assets/js/risk-engine.js" type="module"></script>
+  <script src="assets/js/history.js" type="module"></script>
+  <script src="assets/js/history-page.js" type="module"></script>
+</body>
+</html>

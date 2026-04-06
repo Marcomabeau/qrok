@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QRok — Scan</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RPC8TESB10"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RPC8TESB10');
+</script>
+</head>
+<body class="page-scan">
+
+  <div class="grid-overlay"></div>
+  <div class="scanline"></div>
+
+  <header class="site-header">
+    <div class="logo">
+      <a href="index.html" style="text-decoration:none;display:flex;align-items:center;gap:8px;">
+        <span class="logo-icon">⬡</span>
+        <span class="logo-text">QR<span class="accent">ok</span></span>
+      </a>
+    </div>
+    <nav class="site-nav">
+      <a href="scan.html" class="nav-link active">Scan</a>
+      <a href="history.html" class="nav-link">History</a>
+    </nav>
+  </header>
+
+  <main class="scan-main">
+    <div class="scan-container">
+
+      <div class="page-header">
+        <h1 class="page-title">QR Scanner</h1>
+        <p class="page-sub">Choose an input method below. All processing happens locally on your device.</p>
+      </div>
+
+      <!-- Input method tabs -->
+      <div class="input-tabs" role="tablist">
+        <button class="tab-btn active" data-tab="camera" role="tab" aria-selected="true">
+          <span class="tab-icon">◎</span> Camera
+        </button>
+        <button class="tab-btn" data-tab="upload" role="tab" aria-selected="false">
+          <span class="tab-icon">⊕</span> Upload
+        </button>
+        <button class="tab-btn" data-tab="paste" role="tab" aria-selected="false">
+          <span class="tab-icon">⊞</span> Paste
+        </button>
+      </div>
+
+      <!-- Camera tab -->
+      <div class="tab-panel active" id="tab-camera" role="tabpanel">
+        <div class="camera-wrapper">
+          <div class="camera-frame" id="cameraFrame">
+            <video id="cameraVideo" autoplay muted playsinline></video>
+            <canvas id="cameraCanvas" style="display:none;"></canvas>
+            <div class="camera-overlay">
+              <div class="scan-target">
+                <div class="corner tl"></div>
+                <div class="corner tr"></div>
+                <div class="corner bl"></div>
+                <div class="corner br"></div>
+                <div class="scan-line" id="scanLine"></div>
+              </div>
+            </div>
+            <div class="camera-placeholder" id="cameraPlaceholder">
+              <div class="placeholder-icon">◎</div>
+              <p>Camera not active</p>
+              <p class="placeholder-sub">Click "Start Camera" to begin scanning</p>
+            </div>
+          </div>
+          <div class="camera-status" id="cameraStatus"></div>
+        </div>
+        <div class="camera-controls">
+          <button class="btn btn-primary" id="startCamera">
+            <span class="btn-icon">◎</span> Start Camera
+          </button>
+          <button class="btn btn-ghost" id="stopCamera" style="display:none;">
+            <span class="btn-icon">◻</span> Stop Camera
+          </button>
+          <select class="select-device" id="cameraSelect" style="display:none;">
+            <option value="">Select camera...</option>
+          </select>
+        </div>
+        <div class="camera-hint">
+          <span class="hint-icon">ℹ</span>
+          Camera access stays on your device. No frames are uploaded or stored.
+        </div>
+      </div>
+
+      <!-- Upload tab -->
+      <div class="tab-panel" id="tab-upload" role="tabpanel">
+        <div class="upload-zone" id="uploadZone">
+          <div class="upload-icon">⊕</div>
+          <p class="upload-title">Drop image here</p>
+          <p class="upload-sub">or click to select a file</p>
+          <p class="upload-types">PNG · JPG · GIF · BMP · WebP</p>
+          <input type="file" id="fileInput" accept="image/*" style="display:none;" />
+        </div>
+        <div class="upload-preview" id="uploadPreview" style="display:none;">
+          <img id="previewImg" alt="Uploaded QR" />
+          <div class="upload-preview-info" id="uploadInfo"></div>
+        </div>
+        <div class="upload-controls" id="uploadControls" style="display:none;">
+          <button class="btn btn-primary" id="analyzeUpload">
+            <span class="btn-icon">◈</span> Analyze Image
+          </button>
+          <button class="btn btn-ghost" id="clearUpload">
+            <span class="btn-icon">✕</span> Clear
+          </button>
+        </div>
+        <div id="uploadStatus" class="status-msg"></div>
+      </div>
+
+      <!-- Paste tab -->
+      <div class="tab-panel" id="tab-paste" role="tabpanel">
+        <div class="paste-wrapper">
+          <label class="paste-label" for="pasteInput">Paste QR content or URL</label>
+          <textarea
+            class="paste-input"
+            id="pasteInput"
+            placeholder="https://example.com&#10;WIFI:S:MyNetwork;T:WPA;P:password;;&#10;SMSTO:+1234567890:Hello&#10;mailto:user@example.com&#10;BEGIN:VCARD..."
+            rows="6"
+            spellcheck="false"
+            autocomplete="off"
+          ></textarea>
+          <div class="paste-actions">
+            <button class="btn btn-primary" id="analyzePaste">
+              <span class="btn-icon">◈</span> Analyze Content
+            </button>
+            <button class="btn btn-ghost" id="clearPaste">
+              <span class="btn-icon">✕</span> Clear
+            </button>
+          </div>
+          <div id="pasteStatus" class="status-msg"></div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+  <script src="assets/js/utils.js" type="module"></script>
+  <script src="assets/js/parser.js" type="module"></script>
+  <script src="assets/js/risk-engine.js" type="module"></script>
+  <script src="assets/js/history.js" type="module"></script>
+  <script src="assets/js/scanner.js" type="module"></script>
+  <script src="assets/js/app.js" type="module"></script>
+</body>
+</html>

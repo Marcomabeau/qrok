@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QRok — QR Security Scanner</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RPC8TESB10"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RPC8TESB10');
+</script>
+</head>
+<body class="page-landing">
+
+  <div class="grid-overlay"></div>
+  <div class="scanline"></div>
+
+  <header class="site-header">
+    <div class="logo">
+      <span class="logo-icon">⬡</span>
+      <span class="logo-text">QR<span class="accent">ok</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="scan.html" class="nav-link">Scan</a>
+      <a href="history.html" class="nav-link">History</a>
+    </nav>
+  </header>
+
+  <main class="landing-main">
+
+    <div class="hero">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span>CLIENT-SIDE · NO DATA LEAVES YOUR DEVICE</span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="title-line">Scan QR.</span>
+        <span class="title-line">Detect Threats.</span>
+        <span class="title-line accent-glow">Stay Safe.</span>
+      </h1>
+
+      <p class="hero-sub">
+        QRok analyzes QR codes before you click — exposing malicious URLs, phishing payloads,
+        and suspicious content using explainable heuristic rules.
+        Zero tracking. Zero uploads. 100% local.
+      </p>
+
+      <div class="hero-cta">
+        <a href="scan.html" class="btn btn-primary">
+          <span class="btn-icon">◈</span>
+          Start Scanning
+        </a>
+        <a href="history.html" class="btn btn-ghost">
+          <span class="btn-icon">◷</span>
+          View History
+        </a>
+      </div>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⬡</div>
+        <h3>Camera / Upload / Paste</h3>
+        <p>Scan via live camera, drop an image file, or paste QR content directly. All three input methods work instantly.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">◈</div>
+        <h3>Explainable Risk Engine</h3>
+        <p>Every verdict comes with a reason. HTTP vs HTTPS, URL shorteners, punycode attacks, suspicious keywords — all flagged with clarity.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">◻</div>
+        <h3>Content Parser</h3>
+        <p>Detects URLs, Wi-Fi configs, emails, SMS, phone numbers, payment QRs, and plain text. Knows what you're dealing with.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">◁</div>
+        <h3>Scan History</h3>
+        <p>All scans stored locally in your browser. Review past results, delete entries, and track your scan activity privately.</p>
+      </div>
+    </div>
+
+    <div class="risk-legend">
+      <h2 class="section-title">Risk Levels</h2>
+      <div class="risk-levels">
+        <div class="risk-pill risk-safe"><span>●</span> Safe</div>
+        <div class="risk-pill risk-low"><span>●</span> Low</div>
+        <div class="risk-pill risk-medium"><span>●</span> Medium</div>
+        <div class="risk-pill risk-high"><span>●</span> High</div>
+        <div class="risk-pill risk-dangerous"><span>●</span> Dangerous</div>
+      </div>
+      <p class="risk-legend-note">Risk is determined by a multi-factor heuristic engine — not a blocklist. Each finding is explained in plain language.</p>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="logo-text-sm">QR<span class="accent">ok</span></span>
+      <span class="footer-sep">·</span>
+      <span>Privacy-first QR security scanner</span>
+      <span class="footer-sep">·</span>
+      <span>All processing is local</span>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js" type="module"></script>
+</body>
+</html>
